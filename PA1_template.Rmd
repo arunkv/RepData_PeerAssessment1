@@ -5,7 +5,7 @@ date: "January 15th 2015"
 output: 
   html_document:
     toc: true
-keep_md: true
+    keep_md: true
 ---
 
 ## Overview
@@ -40,7 +40,6 @@ along with the R code to generate the histogram.
 ```{r,echo=TRUE}
 stepData <- activityData[!is.na(activityData$steps), ]
 totalStepData <- with(stepData, rowsum(steps, date))
-png(filename = "figure/step_freq.png")
 hist(totalStepData,
      breaks = 10,
      xlab = "Number of steps per day",
@@ -50,10 +49,7 @@ hist(totalStepData,
 meanStepsPerDay <- round(mean(totalStepData))
 medianStepsPerDay <- round(median(totalStepData))
 abline(v = meanStepsPerDay, col = "darkgreen", lw ="3")
-devices <- dev.off()
 ```
-
-![Histogram of steps per day](figure/step_freq.png)
 
 As seen from the data and the histogram, 
 
@@ -68,7 +64,6 @@ day.
 
 ```{r,echo=TRUE}
 pattern <- tapply(stepData$steps, stepData$interval, mean, simplify = FALSE)
-png(filename = "figure/daily_pattern.png")
 plot(names(pattern), 
      pattern, 
      main = "Daily step pattern",
@@ -77,12 +72,6 @@ plot(names(pattern),
      type = "l",
      lwd = "2",
      col = "darkgreen")
-devices <- dev.off()
-```
-
-![Daily pattern of steps by time interval](figure/daily_pattern.png)
-
-```{r,echo=TRUE}
 maxStepsInInterval <- round(max(unlist(pattern)))
 intervalWithMaxSteps <- names(which.max(pattern))
 ```
@@ -125,7 +114,6 @@ Using the imputed data, the histogram of steps taken each day is show below
 along with the R code to generate the histogram.
 
 ```{r,echo=TRUE}
-png(filename = "figure/step_freq_imputed.png")
 hist(imputedTotalStepData,
      breaks = 10,
      xlab = "Number of steps per day",
@@ -133,10 +121,7 @@ hist(imputedTotalStepData,
      main = "Histogram of steps per day",
      col = "lightyellow2")
 abline(v = imputedMeanStepsPerDay, col = "darkgreen", lw ="3")
-devices <- dev.off()
 ```
-
-![Histogram of steps per day](figure/step_freq_imputed.png)
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -174,8 +159,6 @@ imputedPattern <- rbind(imputedPattern,
                                    daytype = "weekend",
                                    steps = as.numeric(imputedWeekendPattern)))
 
-png(filename = "figure/weekday_vs_weekend_pattern.png",
-    width = 640, height = 960)
 library(ggplot2)
 plot <- ggplot(imputedPattern, aes(x = interval, y = steps, group = daytype)) +
     facet_grid(daytype~.) +
@@ -183,10 +166,7 @@ plot <- ggplot(imputedPattern, aes(x = interval, y = steps, group = daytype)) +
     xlab("Time Interval") +
     ylab("Average number of steps") +
     geom_line(color = "darkgreen") 
-print(plot)
-devices <- dev.off()
+plot
 ```
-
-![Daily pattern of steps by time interval](figure/weekday_vs_weekend_pattern.png)
 
 
