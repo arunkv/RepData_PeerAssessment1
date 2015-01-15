@@ -1,12 +1,6 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-author: "Arun K Viswanathan"
-date: "January 15th 2015"
-output: 
-  html_document:
-    toc: true
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
+Arun K Viswanathan  
+January 15th 2015  
 
 ## Overview
 
@@ -64,7 +58,7 @@ medianStepsPerDay <- round(median(totalStepData))
 abline(v = meanStepsPerDay, col = "darkgreen", lw ="3")
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-2-1.png) 
 
 As seen from the data and the histogram, 
 
@@ -90,7 +84,7 @@ plot(names(pattern),
      col = "darkgreen")
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
 
 ```r
 maxStepsInInterval <- round(max(unlist(pattern)))
@@ -147,7 +141,7 @@ hist(imputedTotalStepData,
 abline(v = imputedMeanStepsPerDay, col = "darkgreen", lw ="3")
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-6-1.png) 
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -197,6 +191,6 @@ plot <- ggplot(imputedPattern, aes(x = interval, y = steps, group = daytype)) +
 plot
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-8-1.png) 
 
 
