@@ -38,7 +38,7 @@ summary(activityData)
 ##  NA's   :2304
 ```
 
-## What is mean total number of steps taken per day?
+## What is the mean total number of steps taken per day?
 
 Ignoring missing values, the histogram of steps taken each day is show below 
 along with the R code to generate the histogram.
